@@ -15,6 +15,8 @@ Please ★ this repo if you found it useful ★ ★ ★
 ## Installation
 
 ```sh
+sudo add-apt-repository ppa:codejamninja/jam-os
+sudo apt-get update
 sudo apt-get install i3lock-color
 ```
 
