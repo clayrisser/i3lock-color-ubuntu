@@ -1,0 +1,50 @@
+Source: i3lock-color
+Section: utils
+Priority: optional
+Maintainer: Jam Risser <jam@codejam.ninja>
+Build-Depends: debhelper (>= 10),
+               libcairo2-dev,
+               libev-dev,
+               libjpeg-dev,
+               libpam0g-dev,
+               libx11-dev,
+               libx11-dev,
+               libx11-xcb-dev,
+               libxcb-composite0-dev,
+               libxcb-dpms0-dev,
+               libxcb-image0-dev,
+               libxcb-randr0-dev,
+               libxcb-util0-dev,
+               libxcb-xinerama0-dev,
+               libxcb-xkb-dev,
+               libxcb1-dev,
+               libxkbcommon-dev (>= 0.2.0),
+               libxkbcommon-x11-dev,
+               libxkbfile-dev,
+               pkg-config
+Standards-Version: 4.1.2
+Homepage: https://github.com/PandorasFox/i3lock-color
+Vcs-Git: https://github.com/PandorasFox/i3lock-color.git
+Vcs-Browser: https://github.com/PandorasFox/i3lock-color.git
+
+Package: i3lock-color
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: i3lock improved screen locker
+ i3lock is a simple screen locker like slock. After starting it, you will see
+ a white screen (you can configure the color/an image). You can return to your
+ screen by entering your password.
+ .
+ Many little improvements have been made to i3lock over time:
+ .
+ i3lock forks, so you can combine it with an alias to suspend to RAM (run
+ "i3lock && echo mem > /sys/power/state" to get a locked screen after
+ waking up your computer from suspend to RAM)
+ .
+ You can specify either a background color or an image (JPG or PNG), which
+ will be displayed while your screen is locked.
+ .
+ You can specify whether i3lock should bell upon a wrong password.
+ .
+ i3lock uses PAM and therefore is compatible with LDAP etc. On OpenBSD i3lock
+ uses the bsd_auth(3) framework.
