@@ -1,8 +1,8 @@
-CWD := $(shell pwd)
 NAME := i3lock-color
+PATCH := 1
+PPA := ppa:codejamninja/jam-os
 REPO := https://github.com/eBrnd/i3lock-color.git
 VERSION := 2.11
-PPA := ppa:codejamninja/jam-os
 
 .PHONY: all
 all: clean
@@ -46,4 +46,4 @@ build: test
 
 .PHONY: publish
 publish: build
-	@dput $(PPA) $(NAME)_$(VERSION)-1_source.changes
+	@dput $(PPA) $(NAME)_$(VERSION)-$(PATCH)_source.changes
