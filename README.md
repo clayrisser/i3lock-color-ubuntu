@@ -4,6 +4,8 @@
 
 > i3lock-color build for ubuntu deb
 
+![](assets/i3lock-color-ubuntu.png)
+
 Please ★ this repo if you found it useful ★ ★ ★
 
 
