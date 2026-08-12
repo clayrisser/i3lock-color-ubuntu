@@ -14,3 +14,10 @@ trim_trailing_whitespace = false
 [{m,M}akefile]
 charset = utf-8
 indent_style = tab
+
+[*.mk]
+charset = utf-8
+indent_style = tab
+
+[*.sh]
+indent_style = tab

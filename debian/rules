@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+# --disable-builddir: AX_ENABLE_BUILDDIR would re-exec configure inside a
+#   host-named subdirectory, which hides the build tree from debhelper.
+# --with-zsh-completion-dir: the default is only set when a zsh binary is
+#   found at configure time, so pass it explicitly rather than build-depend
+#   on zsh just to make the completion appear.
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		--disable-builddir \
+		--with-zsh-completion-dir=/usr/share/zsh/vendor-completions
+
+# Upstream's install-data-hook renames the completions to their final names,
+# but it does not prefix DESTDIR, so it is a no-op for a staged install.
+override_dh_auto_install:
+	dh_auto_install
+	mv debian/i3lock-color/usr/share/bash-completion/completions/i3lock-bash \
+		debian/i3lock-color/usr/share/bash-completion/completions/i3lock
+	mv debian/i3lock-color/usr/share/zsh/vendor-completions/i3lock-zsh \
+		debian/i3lock-color/usr/share/zsh/vendor-completions/_i3lock
