@@ -47,7 +47,8 @@ make BUILD_IMAGE=debian:trixie
 
 `scripts/build-package.sh` fetches the upstream tarball for the version in the
 top `debian/changelog` entry, resolves the build dependencies straight from
-`debian/control` with `apt-get build-dep`, and runs `dpkg-buildpackage`.
+`debian/control` with `apt-get build-dep`, and runs `dpkg-buildpackage`. A
+tarball already sitting in `dist/` is reused rather than re-downloaded.
 
 ## Installing
 

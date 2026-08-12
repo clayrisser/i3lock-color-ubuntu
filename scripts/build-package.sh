@@ -25,8 +25,14 @@ apt-get install -y --no-install-recommends \
 
 mkdir -p /build
 cd /build
-curl -fsSL --retry 5 --retry-all-errors -o "i3lock-color_${version}.orig.tar.gz" \
-	"https://github.com/Raymo111/i3lock-color/archive/refs/tags/${version}.tar.gz"
+# Reuse an already-downloaded tarball from the output directory so repeat
+# builds neither re-download nor fail when GitHub's asset host is unhappy.
+if [ -f "/out/i3lock-color_${version}.orig.tar.gz" ]; then
+	cp "/out/i3lock-color_${version}.orig.tar.gz" .
+else
+	curl -fsSL --retry 5 --retry-all-errors -o "i3lock-color_${version}.orig.tar.gz" \
+		"https://github.com/Raymo111/i3lock-color/archive/refs/tags/${version}.tar.gz"
+fi
 tar -xzf "i3lock-color_${version}.orig.tar.gz"
 cd "i3lock-color-${version}"
 cp -r /repo/debian .
