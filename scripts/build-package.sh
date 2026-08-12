@@ -25,7 +25,7 @@ apt-get install -y --no-install-recommends \
 
 mkdir -p /build
 cd /build
-curl -fsSL -o "i3lock-color_${version}.orig.tar.gz" \
+curl -fsSL --retry 5 --retry-all-errors -o "i3lock-color_${version}.orig.tar.gz" \
 	"https://github.com/Raymo111/i3lock-color/archive/refs/tags/${version}.tar.gz"
 tar -xzf "i3lock-color_${version}.orig.tar.gz"
 cd "i3lock-color-${version}"
