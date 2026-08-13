@@ -1,0 +1,55 @@
+Source: i3lock-color
+Section: x11
+Priority: optional
+Maintainer: Clay Risser <clay@clayrisser.com>
+Rules-Requires-Root: no
+Build-Depends:
+ autoconf-archive,
+ bash-completion,
+ debhelper-compat (= 13),
+ libcairo2-dev,
+ libev-dev,
+ libfontconfig-dev,
+ libjpeg-dev,
+ libpam0g-dev,
+ libxcb-composite0-dev,
+ libxcb-image0-dev,
+ libxcb-randr0-dev,
+ libxcb-util-dev,
+ libxcb-xinerama0-dev,
+ libxcb-xkb-dev,
+ libxcb-xrm-dev,
+ libxcb1-dev,
+ libxkbcommon-dev (>= 0.5.0),
+ libxkbcommon-x11-dev,
+ pkgconf,
+Standards-Version: 4.7.4
+Homepage: https://github.com/Raymo111/i3lock-color
+Vcs-Browser: https://gitlab.com/bitspur/misc/i3lock-color-ubuntu
+Vcs-Git: https://gitlab.com/bitspur/misc/i3lock-color-ubuntu.git
+
+Package: i3lock-color
+Architecture: any
+Multi-Arch: foreign
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Provides: i3lock
+Conflicts: i3lock
+Replaces: i3lock
+Description: improved screen locker with colour and blur support
+ i3lock-color is a fork of the i3lock screen locker that makes every element
+ of the unlock indicator configurable. It is a drop-in replacement for i3lock
+ and installs the same i3lock binary, manual page and PAM configuration, so it
+ cannot be co-installed with the i3lock package from the distribution archive.
+ .
+ On top of upstream i3lock it adds:
+ .
+  * arbitrary colours for every ring, text and background element, including
+    separate colours for the input, verifying, wrong and idle states;
+  * a blurred screenshot of the desktop as the lock background;
+  * configurable indicator geometry, radius and ring width;
+  * custom text, fonts and time/date display with strftime formats;
+  * a bar indicator mode as an alternative to the ring.
+ .
+ It uses PAM and is therefore compatible with LDAP and other PAM backends.

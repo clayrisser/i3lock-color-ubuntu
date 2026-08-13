@@ -1,0 +1,51 @@
+i3lock-color (2.13.c.5-1) resolute; urgency=medium
+
+  * New upstream release (2.13.c.5)
+  * Follow upstream to https://github.com/Raymo111/i3lock-color: the
+    eBrnd repository this package used to build from has not been touched
+    since 2016, and PandorasFox handed maintenance to Raymo111
+  * debian/control:
+    - Declare Conflicts, Replaces and Provides on i3lock. Upstream installs
+      /usr/bin/i3lock, /usr/share/man/man1/i3lock.1, /etc/pam.d/i3lock and
+      the i3lock shell completions, so the package could never unpack
+      alongside i3lock; it is a drop-in replacement for it
+    - Switch to debhelper-compat (= 13) and drop debian/compat
+    - Bump Standards-Version to 4.7.4
+    - Set Rules-Requires-Root: no
+    - Mark the binary package Multi-Arch: foreign
+    - Move from Section: utils to Section: x11
+    - Add the build dependencies 2.13.c.5 needs that were missing:
+      autoconf-archive, bash-completion, libfontconfig-dev and
+      libxcb-xrm-dev
+    - Drop the build dependencies configure.ac does not check for:
+      libx11-dev (also listed twice), libx11-xcb-dev and libxkbfile-dev
+    - Replace pkg-config with pkgconf and the obsolete libxcb-util0-dev
+      with libxcb-util-dev
+    - Point Homepage, Vcs-Browser and Vcs-Git at the current upstream and
+      at this packaging repository
+    - Rewrite the description, which still described plain i3lock
+  * debian/rules:
+    - Enable all hardening build flags
+    - Configure with --disable-builddir; AX_ENABLE_BUILDDIR otherwise
+      re-execs configure into a host-named subdirectory that debhelper
+      cannot see
+    - Pass --with-zsh-completion-dir explicitly so the zsh completion is
+      shipped deterministically instead of depending on whether a zsh
+      binary happens to exist in the build chroot
+    - Rename the shell completions after dh_auto_install; upstream's
+      install-data-hook does the rename without honouring DESTDIR, so a
+      staged install left them as i3lock-bash and i3lock-zsh
+    - Drop the commented-out dh_make boilerplate
+  * debian/watch: add a watch file tracking upstream GitHub tags
+  * debian/gbp.conf: add git-buildpackage configuration
+  * debian/upstream/metadata: add upstream metadata
+  * debian/copyright: point at the current upstream and record that the
+    bundled tinyexpr is under the zlib licence
+
+ -- Clay Risser <clay@clayrisser.com>  Wed, 12 Aug 2026 21:30:00 +0100
+
+i3lock-color (2.11-1) bionic; urgency=medium
+
+  * Initial release
+
+ -- Jam Risser <jam@codejam.ninja>  Tue, 05 Jun 2018 02:47:54 -0500
